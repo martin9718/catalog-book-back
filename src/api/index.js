@@ -19,12 +19,19 @@ const serializerMiddleware = serializers => (req, res, next) => {
     next();
 }
 
-const API = (database, passwords, serializers) => {
+const sessionMiddleware = session => (req, res, next) => {
+    req.session = session;
+
+    next();
+}
+
+const API = (database, passwords, serializers, session) => {
     const app = express();
 
     app.use(databaseMiddleware(database));
     app.use(passwordMiddleware(passwords));
     app.use(serializerMiddleware(serializers));
+    app.use(sessionMiddleware(session));
 
     app.use(express.json());
 

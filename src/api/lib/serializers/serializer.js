@@ -6,8 +6,6 @@ class Serializer {
             email: user.email
         }
     }
-
 }
 
 module.exports = {Serializer};
-
