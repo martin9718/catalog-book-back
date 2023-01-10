@@ -20,6 +20,14 @@ class SessionsStore {
             throw new DatabaseError();
         }
     }
+
+    async delete(params) {
+        try {
+            return this.connection.models.Session.deleteOne({...params});
+        } catch (error) {
+            throw new DatabaseError();
+        }
+    }
 }
 
 module.exports = {SessionsStore};

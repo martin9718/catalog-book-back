@@ -3,6 +3,7 @@ const routerAuth = express.Router();
 
 const {signUp} = require('./signUp');
 const {signIn} = require('./signIn');
+const {signOut} = require('./signOut');
 
 const {body} = require("express-validator");
 const {validateFields} = require("../../lib/middlewares/validateFields");
@@ -22,5 +23,7 @@ routerAuth.post('/signIn', [
     body('password').not().isEmpty().withMessage('Password is required'),
     validateFields
 ], signIn);
+
+routerAuth.post('/signOut', signOut);
 
 module.exports = {routerAuth};
