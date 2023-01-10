@@ -6,7 +6,9 @@ const {signIn} = require('./signIn');
 const {signOut} = require('./signOut');
 
 const {body} = require("express-validator");
+
 const {validateFields} = require("../../lib/middlewares/validateFields");
+const {validateToken} = require("../../lib/middlewares/validateToken");
 
 routerAuth.post('/signUp', [
     body('name').not().isEmpty().withMessage('Name is required'),
@@ -24,6 +26,6 @@ routerAuth.post('/signIn', [
     validateFields
 ], signIn);
 
-routerAuth.post('/signOut', signOut);
+routerAuth.post('/signOut', [validateToken], signOut);
 
 module.exports = {routerAuth};

@@ -12,7 +12,7 @@ const signIn = async (req, res) => {
             });
         }
 
-        if(passwords.compare(password, existingUser.password)){
+        if(!passwords.compare(password, existingUser.password)){
             return res.status(400).json({
                 code: 'BAD_REQUEST',
                 message: 'Incorrect email or password'
