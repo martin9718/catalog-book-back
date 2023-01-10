@@ -15,7 +15,7 @@ class SessionsStore {
 
     async findOne(params) {
         try {
-            return this.connection.models.Session.findOne({...params});
+            return await this.connection.models.Session.findOne({...params});
         } catch (error) {
             throw new DatabaseError();
         }
@@ -23,7 +23,7 @@ class SessionsStore {
 
     async delete(params) {
         try {
-            return this.connection.models.Session.deleteOne({...params});
+            return await this.connection.models.Session.deleteOne({...params});
         } catch (error) {
             throw new DatabaseError();
         }

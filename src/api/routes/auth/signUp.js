@@ -15,7 +15,7 @@ const signUp = async (req, res) => {
         const passwordHash = passwords.toHash(password);
         const user = await database.users.create({name, email, password: passwordHash});
 
-        return res.status(201).json(serializers.userSerializer(user));
+        res.status(201).json(serializers.userSerializer(user));
     } catch (error) {
         res.status(500).json({
             code: 'UNEXPECTED_ERROR',

@@ -15,7 +15,15 @@ class UsersStore {
 
     async findOne(params) {
         try {
-            return this.connection.models.User.findOne({...params});
+            return await this.connection.models.User.findOne({...params});
+        } catch (error) {
+            throw new DatabaseError();
+        }
+    }
+
+    async findById(id) {
+        try {
+            return await this.connection.models.User.findById(id);
         } catch (error) {
             throw new DatabaseError();
         }

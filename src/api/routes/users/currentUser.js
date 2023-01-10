@@ -4,7 +4,7 @@ const currentUser = async (req, res) => {
     try {
         const existingUser = await database.users.findOne({email: req.user.email});
 
-        return res.status(200).json({
+        res.status(200).json({
             ...serializers.userSerializer(existingUser),
             token: req.token
         });
