@@ -8,7 +8,7 @@ npm install
 
 ### Endpoint to create new User
 ```
-/api/auth/signUp
+https://catalog-book.herokuapp.com/api/auth/signUp
 
 {
     "name": "Martin Cervantes",
