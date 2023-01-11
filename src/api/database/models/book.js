@@ -13,9 +13,18 @@ const bookSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    image:{
+        type: String,
+        required: true
+    },
     userId:{
         type: String,
         required: true
+    },
+    active:{
+        type: Boolean,
+        required: true,
+        default: true
     }
 });
 

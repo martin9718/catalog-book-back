@@ -13,6 +13,7 @@ class Serializer {
             title: book.title,
             numberPages: book.numberPages,
             publicationDate: book.publicationDate,
+            image: book.image,
             userId: book.userId,
         }
     }

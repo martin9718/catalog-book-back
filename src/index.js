@@ -3,6 +3,7 @@ const {getDatabase} = require('./api/database/factory');
 const {Password} = require('./api/lib/auth/password');
 const {Serializer} = require('./api/lib/serializers/serializer');
 const {Session} = require('./api/lib/auth/session');
+const {Image} = require('./api/lib/images/image');
 
 require('dotenv').config();
 
@@ -11,10 +12,11 @@ const app = API(
     getDatabase(),
     Password,
     Serializer,
-    Session
+    Session,
+    Image
 );
 
-app.listen(3000, () => {
-    console.log('Book catalog app is running in port 3000')
+app.listen(process.env.PORT, () => {
+    console.log(`Book catalog app is running in port ${process.env.PORT}`)
 });
 

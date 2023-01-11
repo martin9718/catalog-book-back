@@ -13,14 +13,6 @@ class BooksStore {
         }
     }
 
-    async findOne(params) {
-        try {
-            return await this.connection.models.Book.findOne({...params});
-        } catch (error) {
-            throw new DatabaseError();
-        }
-    }
-
     async findById(id) {
         try {
             return await this.connection.models.Book.findById(id);
@@ -29,17 +21,35 @@ class BooksStore {
         }
     }
 
-    async findAllByUserId(userId) {
+    async findAllByUserId(userId, limit, page) {
         try {
-            return await this.connection.models.Book.findOne({userId});
+            return await this.connection.models.Book.find({userId, active: true})
+                .limit(limit * 1)
+                .skip((page - 1) * limit);
         } catch (error) {
             throw new DatabaseError();
         }
     }
 
-    async delete(params) {
+    async countBooks() {
         try {
-            return await this.connection.models.Book.deleteOne({...params});
+            return await this.connection.models.Book.countDocuments({active: true});
+        } catch (error) {
+            throw new DatabaseError();
+        }
+    }
+
+    async updateBook(id, book) {
+        try {
+            return await this.connection.models.Book.updateOne({_id: id}, book);
+        } catch (error) {
+            throw new DatabaseError();
+        }
+    }
+
+    async delete(id) {
+        try {
+            return await this.connection.models.Book.updateOne({_id: id}, {active: false});
         } catch (error) {
             throw new DatabaseError();
         }
